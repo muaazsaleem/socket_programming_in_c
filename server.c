@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
      tv.tv_sec = 0;
      tv.tv_usec = 0;
      do {
-     retval = select(nfd,&rfds,NULL,NULL, &tv);
+        retval = select(nfd,&rfds,NULL,NULL, &tv);
      } while(retval == -1);
      
 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
      do {
      retval = select(nfd, &rfds, NULL, NULL, &tv);
      } while(retval == -1);
-
+     
 
      bzero(buffer,256);
      n = read(new_socket_file_descriptor,buffer,255); //(fro,to,length)
