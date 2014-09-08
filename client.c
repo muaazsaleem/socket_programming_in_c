@@ -18,8 +18,11 @@ int main(int argc, char *argv[])
     int sockfd, portno, n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
-
     char buffer[256];
+    fd_set rfds;
+    struct timeval tv;
+    int retval, nfd;
+
     if (argc < 3) {
        fprintf(stderr,"usage %s hostname port\n", argv[0]);
        exit(0);
@@ -48,6 +51,15 @@ int main(int argc, char *argv[])
     if (n < 0) 
          error("ERROR writing to socket");
     bzero(buffer,256);
+    
+    FD_ZERO(&rfds);
+    FD_SET(sockfd,&rfds);
+    nfd = sockfd + 1;
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+    do {
+    retval = select(nfd,&rfds,NULL,NULL,&tv);
+    } while(retval == -1);
     n = read(sockfd,buffer,255);
     if (n < 0) 
          error("ERROR reading from socket");
