@@ -26,3 +26,27 @@ can find it by just typing ‘man select’ on the command line or by going to: 
 have exactly the same output as it did before.
 
 You can do this lab in pairs or individually. However, every student must submit his/her code on LMS.
+
+Notes:- 
+	struct sockaddr_in
+	{
+	  short   sin_family; /* must be AF_INET */
+	  u_short sin_port;
+	  struct  in_addr sin_addr;
+	  char    sin_zero[8]; /* Not used, must be zero */
+	};
+
+	struct in_addr
+	{
+		unsigned long s_addr
+	}
+
+	struct  hostent
+	{
+	  char    *h_name;        /* official name of host */
+	  char    **h_aliases;    /* alias list */
+	  int     h_addrtype;     /* host address type */
+	  int     h_length;       /* length of address */
+	  char    **h_addr_list;  /* list of addresses from name server */
+	  #define h_addr  h_addr_list[0]  /* address, for backward compatiblity */
+	};
